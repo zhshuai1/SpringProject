@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xmlns="http://www.springframework.org/schema/beans" 
+     xmlns:context="http://www.springframework.org/schema/context" 
+     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context-3.1.xsd"> 
+     
+     <!--@Autowire 默认是byType进行装配，当检测到有多个bean的时候，采用byName策略寻找最匹配的，如果没有则报发现多个匹配错误。-->
+     <!--对于全大写的类 IOS，@Component 生成的默认名称为IOS，可以使用@Component("name")来重命名-->
+     <!--对于遵守驼峰规则的，则按照默认类和对象命名规则：Android->android, AppleOperatingSystem->appleOperatingSystem-->
+     <!--怎样才能知道spring是如何命名这些component的？可以故意在装配时使其出错，日志中会显示spring找到的候选的名字-->
+     <!--同时使用了@component和xml定义，查找时会在xml和component同时查找，但优先使用xml定义-->
+     <!--使用@Autowire不需要有setter方法，但是使用property属性就一定要有-->
+    <bean id="processor" class="com.zebrait.chapter3.SnapDragon"></bean>
+    
+    <bean id="android2" class="com.zebrait.chapter3.Android"></bean>
+    
+    <bean id="io2s" class="com.zebrait.chapter3.IOS"></bean>
+    
+    <bean id="sumsun" class="com.zebrait.chapter3.Sumsun"></bean>
+    
+    <!--使用了property的方式之后，这种情况下，不会进行autowire,必须将属性都写全，否则没有设置的属性被视为null，@Value设置的属性除外-->
+    <!--
+    <bean id="iphone6s" class="com.zebrait.chapter3.Apple">
+    	<property name="ios" ref="io2s"></property>
+    	<property name="processor" ref="processor"></property>
+    </bean>
+    -->
+	 <bean id="iphone6s" class="com.zebrait.chapter3.Apple"></bean>
+	<context:annotation-config />
+	<!--默认情况下扫描其中所有被@Component @Configuration等标注的类，增加一条记录，只是在原来基础上进行merge而不是覆盖-->
+	<context:component-scan base-package="com.zebrait.chapter3">	
+		<context:include-filter type="assignable" expression="com.zebrait.chapter3.OperatingSystem"/>
+	</context:component-scan>
+</beans> 

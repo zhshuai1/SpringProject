@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xmlns="http://www.springframework.org/schema/beans" 
+     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+     
+     <!-- 参数发生多个匹配时：1 先找能够完全匹配的；2如果没有找到，就用最后一个能够进行转换的进行构造；-->
+     <bean id="duke" class="com.zebrait.chapter2.Juggler"></bean>
+     <bean id="jim" class="com.zebrait.chapter2.Juggler">
+     	<constructor-arg value="45"></constructor-arg>
+     	<constructor-arg value="34"></constructor-arg>
+     </bean>   
+     
+     <bean id="stage" class="com.zebrait.chapter2.Stage" factory-method="getInstance"></bean> 
+  
+</beans> 

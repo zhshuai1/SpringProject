@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xmlns="http://www.springframework.org/schema/beans" 
+     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+     
+     <bean id="tsingtaoservice" class="com.zebrait.chapter10.TsingtaoBeerService"></bean>
+     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+     	<property name="service" ref="tsingtaoservice"></property>
+     	<property name="serviceName" value="TsingtaoService"></property>
+     	<property name="serviceInterface" value="com.zebrait.chapter10.BeerService"></property>     	   	
+     	<!--<property name="registryHost" value="192.168.1.113"></property> -->    	
+     	<property name="registryPort" value="9930"></property>
+     	
+     </bean>  
+</beans> 

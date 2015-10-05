@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xmlns="http://www.springframework.org/schema/beans" 
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd"> 
+     
+     <bean id="beerService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+     	<property name="serviceUrl" value="//192.168.1.113:9930/TsingtaoService"></property>
+     	<property name="serviceInterface" value="com.zebrait.chapter10.BeerService"></property>
+     </bean>
+     <bean id="waiter" class="com.zebrait.chapter10.Waiter"></bean>
+     <context:annotation-config/>
+</beans> 
